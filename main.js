@@ -321,10 +321,10 @@ function cancelChanges ()
 
 
 // reviews
-displaySec(sec_Review);
+// displaySec(sec_Review);
 // localStorage.setItem('businessId', this.id);
 // populate reviews div
-getBusinessReviews();
+// getBusinessReviews();
 
 // post a business review
 async function postReview ()
