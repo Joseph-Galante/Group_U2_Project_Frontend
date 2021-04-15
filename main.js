@@ -96,15 +96,25 @@ document.querySelector('#signup').addEventListener('submit', async (event) =>
         email: email,
         password: password
     })
-    // grab user id
-    const userId = res.data.userId;
-    // add to local storage - login user
-    localStorage.setItem('userId', userId);
-    // return home
-    checkForUser();
-    displaySec(sec_Home);
-    // show message
-    displayMessage(true, `Hello, ${name}!`)
+    // check for OK status
+    if (res.status === 200)
+    {
+        // grab user id
+        const userId = res.data.userId;
+        // add to local storage - login user
+        localStorage.setItem('userId', userId);
+        // return home
+        checkForUser();
+        displaySec(sec_Home);
+        // show message
+        displayMessage(true, `Hello, ${name}!`)
+    }
+    // validation error - duplicate email
+    else if (res.error.message === 'email already taken')
+    {
+        displayMessage(false, `Email already taken. Use a different email or login.`)
+    }
+
 
     } catch (error) {
         alert('email is already taken');
