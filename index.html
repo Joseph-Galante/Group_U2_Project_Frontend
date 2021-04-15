@@ -7,6 +7,7 @@
     <title>Welp</title>
 </head>
 <body>
+<!--NAV LINKS------------------------------------------------------------------------------------------ -->
     <nav class="navigation-links">
         <span id="home-link" class="nav-link">Home</span>
         <span id="signup-link" class="nav-link">Sign Up</span>
@@ -15,21 +16,71 @@
         <span id="logout-link" class="nav-link">Logout</span>
     </nav>
 
+<!--MESSAGES------------------------------------------------------------------------------------------ -->
     <h4 class="hidden" id="messages"></h4>
+    
 
-    <section class="home">
+<!--WELCOME SCREEN------------------------------------------------------------------------------------------ -->
+    <section id="welcome_screen">
         <h1>Welcome to Welp</h1>
     </section>
-    
+
+
+<!--LOG IN / SIGN UP SCREEN---------------------------------------------------------------------------------- -->
+    <section id="log_sign_screen">
+
+            
+        <div id="sign_up_box">
+            <form id="signup">
+                <div class="labelAndInput">
+                    <label name="name">Name:</label>
+                    <input id="s_name" type="text" name="name">
+                </div>
+                <div class="labelAndInput">
+                    <label name="email">Email:</label>
+                    <input id="s_email" type="text" name="email">
+                </div>
+                <div class="labelAndInput">
+                    <label name="password">password:</label>
+                    <input id="s_password" type="password" name="password">
+                </div>
+                <div class="labelAndInput">
+                    <button id="signup_bttn" class="buttons" type="submit">sign up</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="divider"></div>
+
+        <div id="log_in_box">
+            <form id="login">
+                <div id="placeholder"></div>
+                <div class="labelAndInput">
+                    <label name="email">Email:</label>
+                    <input id="s_email" type="text" name="email">
+                </div>
+                <div class="labelAndInput">
+                    <label name="password">password:</label>
+                    <input id="l_password" type="password" name="password">
+                </div>
+                <div class="labelAndInput">
+                    <button id="login_bttn" class="buttons" type="submit">log in</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+<!--PROFILE SCREEN------------------------------------------------------------------------------------------ -->
     <section class="profile">
-        <section class="profile-info">
+        <div class="profile-info">
             <h2 id="name-label">Name:</h2>
             <h3 id="profile-name">Name</h3>
             <h2 id="email-label">Email:</h2>
             <h3 id="profile-email">Email</h3>
             <!-- <h2 id="password-label">Password:</h2>
             <h3 id="profile-password">Password</h3> -->
-        </section>
+        </div>
         <input type="button" id="edit-user" value="Edit">
         <form class="update-form">
             <label for="update-name">Name</label>
@@ -40,13 +91,14 @@
             
             <!-- <label for="update-password">Password</label>
             <input type="password" id="update-password"> -->
-            <section class="change-buttons">
+            <div class="change-buttons">
                 <input type="button" id="cancel-changes" value="Cancel Changes">
                 <input type="button" id="save-changes" value="Save Changes">
-            </section>
+            </div>
         </form>
     </section>
 
+<!--LIST BUSINESS SCREEN------------------------------------------------------------------------------------------ -->
     <section class="businesses-state">
         <div class="nav-container">
         </div>

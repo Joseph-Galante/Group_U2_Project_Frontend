@@ -22,6 +22,90 @@ body {
   cursor: pointer;
 }
 
+#log_sign_screen{
+    height: 60vw;
+    width: 100vw;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 3vw;
+
+}
+
+#sign_up_box{
+    height: 40vw;
+    width: 33vw;
+    
+   
+
+}
+#signup{
+    width: 100%;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+
+#divider{
+    height: 40vw;
+    width: 1vw;
+    background-color: black;
+}
+
+#log_in_box{
+    height: 40vw;
+    width: 33vw;
+    
+}
+#login{
+    width: 100%;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.labelAndInput{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.labelAndInput input{
+    
+    margin-left: 2vw;
+    width: 20vw;
+    height: 3vw;
+    font-size: 1.5vw;
+    background-color: rgba(0,0,0,.5);
+    border: 0;
+    padding-left: .5vw;
+    color: red;
+}
+
+.buttons{
+    height: 3vw;
+    color: red;
+    font-size: 1.5vw;
+    background-color: rgba(0,0,0,.7);
+    border-radius: 2%;
+    padding: .5vw 2vw .5vw 2vw;
+}
+
+.buttons:hover{
+    color:black;
+    background-color: rgba(200,0, 0, .7);
+}
+
 .success {
     color: green;
     background-color: white;
