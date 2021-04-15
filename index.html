@@ -7,73 +7,100 @@
     <title>Welp</title>
 </head>
 <body>
-<!--NAV BAR---------------------------------------------------------------------------------- -->
-
-<div class="nav-container">
-    <nav class="navigation-btns">
-        <button class="home">Home</button>
-        <button class="logout">Log Out</button>
+<!--NAV LINKS------------------------------------------------------------------------------------------ -->
+    <nav class="navigation-links">
+        <span id="home-link" class="nav-link">Home</span>
+        <span id="signup-link" class="nav-link">Sign Up</span>
+        <span id="login-link" class="nav-link">Login</span>
+        <span id="profile-link" class="nav-link">Profile</span>
+        <span id="logout-link" class="nav-link">Logout</span>
     </nav>
-</div>
-<!--WELCOME SCREEN---------------------------------------------------------------------------------- -->
-<div id="welcome_screen">
 
-</div>    
+<!--MESSAGES------------------------------------------------------------------------------------------ -->
+    <h4 class="hidden" id="messages"></h4>
+    
+
+<!--WELCOME SCREEN------------------------------------------------------------------------------------------ -->
+    <section class="welcome_screen">
+        <h1>Welcome to Welp</h1>
+    </section>
 
 
+<!--LOG IN / SIGN UP SCREEN---------------------------------------------------------------------------------- -->
+    <section class="log_sign_screen">
 
-<!--LOG IN/ SIGN UP SCREEN---------------------------------------------------------------------------------- -->
-<div id="log_sign_screen">
+            
+        <div id="sign_up_box">
+            <form id="signup">
+                <div class="labelAndInput">
+                    <label name="name">Name:</label>
+                    <input id="s_name" type="text" name="name">
+                </div>
+                <div class="labelAndInput">
+                    <label name="email">Email:</label>
+                    <input id="s_email" type="text" name="email">
+                </div>
+                <div class="labelAndInput">
+                    <label name="password">password:</label>
+                    <input id="s_password" type="password" name="password">
+                </div>
+                <div class="labelAndInput">
+                    <button id="signup_bttn" class="buttons" type="submit">sign up</button>
+                </div>
+            </form>
+        </div>
 
-        
-    <div id="sign_up_box">
-        <form id="signup">
-            <div class="labelAndInput">
-                <label name="name">Name:</label>
-                <input id="s_name" type="text" name="name">
-            </div>
-            <div class="labelAndInput">
-                <label name="email">Email:</label>
-                <input id="s_email" type="text" name="email">
-            </div>
-            <div class="labelAndInput">
-                <label name="password">password:</label>
-                <input id="s_password" type="password" name="password">
-            </div>
-            <div class="labelAndInput">
-                <button id="signup_bttn" class="buttons" type="submit">sign up</button>
+        <div id="divider"></div>
+
+        <div id="log_in_box">
+            <form id="login">
+                <div id="placeholder"></div>
+                <div class="labelAndInput">
+                    <label name="email">Email:</label>
+                    <input id="l_email" type="text" name="email">
+                </div>
+                <div class="labelAndInput">
+                    <label name="password">password:</label>
+                    <input id="l_password" type="password" name="password">
+                </div>
+                <div class="labelAndInput">
+                    <button id="login_bttn" class="buttons" type="submit">log in</button>
+                </div>
+            </form>
+        </div>
+
+    </section>
+
+<!--PROFILE SCREEN------------------------------------------------------------------------------------------ -->
+    <section class="profile">
+        <div class="profile-info">
+            <h2 id="name-label">Name:</h2>
+            <h3 id="profile-name">Name</h3>
+            <h2 id="email-label">Email:</h2>
+            <h3 id="profile-email">Email</h3>
+            <!-- <h2 id="password-label">Password:</h2>
+            <h3 id="profile-password">Password</h3> -->
+        </div>
+        <input type="button" id="edit-user" value="Edit">
+        <form class="update-form">
+            <label for="update-name">Name</label>
+            <input type="text" id="update-name">
+
+            <label for="update-email">Email</label>
+            <input type="text" id="update-email">
+            
+            <!-- <label for="update-password">Password</label>
+            <input type="password" id="update-password"> -->
+            <div class="change-buttons">
+                <input type="button" id="cancel-changes" value="Cancel Changes">
+                <input type="button" id="save-changes" value="Save Changes">
             </div>
         </form>
-    </div>
+    </section>
 
-    <div id="divider"></div>
-
-    <div id="log_in_box">
-        <form id="login">
-            <div id="placeholder"></div>
-            <div class="labelAndInput">
-                <label name="email">Email:</label>
-                <input id="s_email" type="text" name="email">
-            </div>
-            <div class="labelAndInput">
-                <label name="password">password:</label>
-                <input id="l_password" type="password" name="password">
-            </div>
-            <div class="labelAndInput">
-                <button id="login_bttn" class="buttons" type="submit">log in</button>
-            </div>
-        </form>
-    </div>
-
-</div>
-
-
+<!--LIST BUSINESS SCREEN------------------------------------------------------------------------------------------ -->
     <section class="businesses-state">
         <div class="nav-container">
-        <nav class="navigation-btns">
-            <button class="home">Home</button>
-            <button class="logout">Log Out</button>
-        </nav>
         </div>
         <div class="form-container">
             <form class="creation-form">
