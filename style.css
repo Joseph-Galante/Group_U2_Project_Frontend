@@ -7,11 +7,17 @@ body {
     height: 100vh;
 }
 
+.nav-link {
+    color: white;
+    margin: 0.5em;
+    padding: 5px;
+    font: 20px Arial;
+    background-color: dodgerblue;
+}
 
-
-/* connors stuff */
-
-
+.nav-link:hover {
+  cursor: pointer;
+}
 
 #log_sign_screen{
     height: 60vw;
@@ -24,14 +30,9 @@ body {
 
 }
 
-
-
 #sign_up_box{
     height: 40vw;
     width: 33vw;
-    
-   
-
 }
 #signup{
     width: 100%;
@@ -42,7 +43,6 @@ body {
     align-items: center;
 
 }
-
 
 #divider{
     height: 40vw;
@@ -93,18 +93,12 @@ body {
     border-radius: 2%;
     padding: .5vw 2vw .5vw 2vw;
 }
-    .buttons:hover{
-        color:black;
-        background-color: rgba(200,0, 0, .7);
-    }
-/* connors stuff ^^ */
 
-.businesses-state {
-    height: 100%;
-    width: 100%;
+.buttons:hover{
+    color:black;
+    background-color: rgba(200,0, 0, .7);
 }
 
-/* gregory stuff */
 
 .navigation-btns {
     display: flex;
@@ -112,20 +106,27 @@ body {
     justify-content: flex-start;
     margin-left: 10px;
 }
-
-.home {
-    height: 25px;
-    width: 100px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: 700;
+.success {
+    background-color: white;
+    border-radius: 6%;
+    border: 2px solid green;
+    padding: 8px;
+}
+.fail {
+    color: red;
+    background-color: white;
+    border-radius: 6%;
+    border: 2px solid red;
+    padding: 8px;
+}
+.business-state{
+    height: 100%;
+    width: 100%;
 }
 
-.logout {
-    margin-left: 10px;
-    width: 100px;
-    text-transform: uppercase;
-    font-weight: 700;
+.change-buttons {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .form-container {
@@ -147,9 +148,9 @@ body {
     margin-bottom: 10px;
     padding-bottom: 10px;
     position: relative;
-  }
+}
 
-  .form-control label {
+.form-control label {
     display: block;
     margin-bottom: 5px;
   }
@@ -219,3 +220,48 @@ body {
       margin: 15px;
       border-bottom: 1px solid black;
   }
+
+
+.form-control input {
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#submit-btn {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+input {
+    border: 1px solid transparent;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px 7px 0 0;
+    border-radius: 6%;
+}
+input[type=text] {
+    background-color: #f1f1f1;
+    width: 85%;
+}
+input[type=password] {
+    background-color: #f1f1f1;
+    width: 85%;
+}
+input[type=submit] {
+    background-color: dodgerblue;
+    color: #fff;
+}
+input[type=button] {
+    background-color: dodgerblue;
+    margin: 50px 15px 0 15px;
+    width: 200px;
+    height: 50px
+}
+
+.hidden {
+    display: none;
+}
