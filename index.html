@@ -18,6 +18,7 @@
         <span id="login-link" class="nav-link">Login</span>
         <span id="profile-link" class="nav-link">Profile</span>
         <span id="logout-link" class="nav-link">Logout</span>
+        <span id="all-business-link" class="nav-link">All Businesses</span>
     </nav>
 
 <!--MESSAGES------------------------------------------------------------------------------------------ -->
@@ -102,7 +103,7 @@
         </form>
     </section>
 
-<!--LIST BUSINESS SCREEN------------------------------------------------------------------------------------------ -->
+<!--MY BUSINESS/Create Businesses SCREEN------------------------------------------------------------------------------------------ -->
     <section class="businesses-state">
         <div class="nav-container">
         </div>
@@ -138,6 +139,8 @@
             </form>
         </div>
     </section>
+
+<!-- ---------------------------- reviews page ----------------------------- -->
     <section class="reviews-state">
         <div class="business-detail-container">
             <h1>Business Detail</h1>
@@ -157,6 +160,32 @@
             <p class="user-reviews">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi, ex. Sapiente, molestiae placeat! Quo, maxime.</p>
         </div>
     </section>
+
+<!-- ------------------------ all businesses state ------------------------- -->
+<section class="all-businesses-screen">
+    <div id="all-businesses-content">
+        <div id="list-all-businesses">
+            <h1>List Of All Businesses</h1>
+            <div id="business-list">
+                <div class="listed-business">
+                    test-business
+                </div>
+            </div>
+        </div>
+        <div id="business-details">
+            <h1>Business Details</h1>
+            <div id="details-box">
+                <div id="bsn-name">name</div>
+                <div id="bsn-address">address</div>
+                <div id="bsn-description">description</div>
+                <div id="bsn-type">type</div>
+                <div>Listed by: <div id="bsn-lister">lister</div></div>
+            </div>
+            <button>Reviews</button>
+        </div>
+    </div>
+    
+</section>
 
     <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>
     <script async defer src="./main.js"></script>

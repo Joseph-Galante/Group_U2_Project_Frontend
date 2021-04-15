@@ -26,7 +26,9 @@ body {
 .nav-link:hover {
   cursor: pointer;
 }
-
+#all-business-link{
+    float: right;
+}
 #log_sign_screen{
     height: 60vw;
     width: 100vw;
@@ -315,4 +317,37 @@ input[type=button] {
 
 .hidden {
     display: none;
+}
+
+/* all business */
+.all-businesses-screen{
+    height: 100%;
+    width: 100%;
+}
+
+#all-businesses-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 100%;
+    
+
+}
+
+#list-all-businesses{
+    height: 50%;
+    width: 33%;
+    
+}
+
+#business-details{
+    height: 50%;
+    width: 33%;
+    
+}
+
+#business-list{
+    border: 5px solid black;
+    height: 80%;
 }
