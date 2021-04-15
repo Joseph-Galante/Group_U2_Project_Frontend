@@ -12,6 +12,7 @@ const nav_SignupLink = document.querySelector('#signup-link');
 const nav_LoginLink = document.querySelector('#login-link');
 const nav_ProfileLink = document.querySelector('#profile-link');
 const nav_LogoutLink = document.querySelector('#logout-link');
+const nav_AllBusinessesLink = document.querySelector('#all-business-link');
 
 // sections
 const sec_Home = document.querySelector('.welcome_screen');
@@ -19,6 +20,7 @@ const sec_LoginSignUp = document.querySelector('.log_sign_screen');
 const sec_Profile = document.querySelector('.profile');
 const sec_Review = document.querySelector('.reviews-state');
 const sec_PostReview = document.querySelector('.post-review');
+const sec_AllBusiness = document.querySelector('.all-businesses-screen');
 
 // divs
 const div_ProfileInfo = document.querySelector('.profile-info');
@@ -72,6 +74,12 @@ nav_LogoutLink.addEventListener('click', () => {
     localStorage.removeItem('userId');
     // display proper links
     checkForUser();
+})
+
+nav_AllBusinessesLink.addEventListener('click', () => {
+    // to all businesses
+    showAllBusinesses();
+
 })
 
 // edit profile
@@ -239,6 +247,14 @@ function displayMessage (success, message)
     messages.classList.remove('hidden');
 }
 
+//show all businesses
+async function showAllBusinesses ()
+{
+    //show allbusinesses sec
+    displaySec(sec_AllBusiness);
+    //
+
+}
 
 // show profile info
 async function showProfile ()
