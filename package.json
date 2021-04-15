@@ -1,0 +1,27 @@
+{
+  "name": "group_u2_project_frontend",
+  "version": "1.0.0",
+  "description": "Group_U2_Project_Frontend",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joseph-Galante/Group_U2_Project_Frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joseph-Galante/Group_U2_Project_Frontend/issues"
+  },
+  "homepage": "https://github.com/Joseph-Galante/Group_U2_Project_Frontend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "replace-in-file": "^6.2.0",
+    "rowdy-logger": "^1.0.2"
+  }
+}
