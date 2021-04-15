@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# Group_U2_Project_Frontend
+=======
 # Welp
 Group_U2_Project_Frontend
 
@@ -49,3 +52,4 @@ Business Reviews
 ## Routes
 
 ## Stretch Goals
+>>>>>>> 34950faeb2bffa278a9e2c219e48fda53fdc5b27
