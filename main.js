@@ -14,10 +14,12 @@ const nav_ProfileLink = document.querySelector('#profile-link');
 const nav_LogoutLink = document.querySelector('#logout-link');
 
 // sections
-const sec_Home = document.querySelector('.home');
-const sec_Signup = document.querySelector('.signup');
-const sec_Login = document.querySelector('.login');
+const sec_Home = document.querySelector('.welcome_screen');
+const sec_LoginSignUp = document.querySelector('.log_sign_screen');
 const sec_Profile = document.querySelector('.profile');
+
+// divs
+const div_ProfileInfo = document.querySelector('.profile-info');
 
 // forms
 const form_UpdateProfile = document.querySelector('.update-form');
@@ -36,19 +38,19 @@ const messages = document.querySelector('#messages');
 // home page
 nav_HomeLink.addEventListener('click', () => {
     // show home screen
-    displayDiv(div_Home);
+    displaySec(sec_Home);
 })
 
 // signup form
 nav_SignupLink.addEventListener('click', () => {
     // show signup form
-    displayDiv(div_Signup);
+    displaySec(sec_LoginSignUp);
 })
 
 // login form
 nav_LoginLink.addEventListener('click', () => {
     // show login form
-    displayDiv(div_Login);
+    displaySec(sec_LoginSignUp);
 })
 
 // profile
@@ -59,7 +61,7 @@ nav_ProfileLink.addEventListener('click', async () => {
 // logout
 nav_LogoutLink.addEventListener('click', () => {
     // return to home screen
-    displayDiv(div_Home);
+    displaySec(sec_Home);
     // remove id from local storage
     localStorage.removeItem('userId');
     // display proper links
@@ -77,15 +79,15 @@ but_CancelChanges.addEventListener('click', cancelChanges);
 //=============== FORM SUBMISSIONS ===============//
 
 // sign up
-document.querySelector('.signup-form').addEventListener('submit', async (event) => 
+document.querySelector('#signup').addEventListener('submit', async (event) => 
 {
     event.preventDefault();
     // get name
-    const name = document.querySelector('#signup-name').value;
+    const name = document.querySelector('#s_name').value;
     // get email
-    const email = document.querySelector('#signup-email').value;
+    const email = document.querySelector('#s_email').value;
     // get pw
-    const password = document.querySelector('#signup-password').value;
+    const password = document.querySelector('#s_password').value;
 
     try {
     // make user
@@ -98,6 +100,9 @@ document.querySelector('.signup-form').addEventListener('submit', async (event) 
     const userId = res.data.userId;
     // add to local storage - login user
     localStorage.setItem('userId', userId);
+    // return home
+    checkForUser();
+    displaySec(sec_Home);
     // show message
     displayMessage(true, `Hello, ${name}!`)
 
@@ -108,13 +113,13 @@ document.querySelector('.signup-form').addEventListener('submit', async (event) 
 })
 
 // login
-document.querySelector('.login-form').addEventListener('submit', async (event) => 
+document.querySelector('#login').addEventListener('submit', async (event) => 
 {
     event.preventDefault();
     // get email
-    const email = document.querySelector('#login-email').value;
+    const email = document.querySelector('#l_email').value;
     // get pw
-    const password = document.querySelector('#login-password').value;
+    const password = document.querySelector('#l_password').value;
 
     try {
     // login user
@@ -126,6 +131,11 @@ document.querySelector('.login-form').addEventListener('submit', async (event) =
     const userId = res.data.userId;
     // add id to local storage - login user
     localStorage.setItem('userId', userId);
+    // return home
+    checkForUser();
+    displaySec(sec_Home);
+    // show message
+    displayMessage(true, `Hello, ${res.data.name}!`)
 
     } catch (error) {
         alert('login failed');
@@ -165,20 +175,20 @@ checkForUser();
 
 
 // update UI based on nav link clicked
-function displayDiv (element)
+function displaySec (element)
 {
-    // hide all divs
+    // hide all secs
     document.querySelectorAll('section').forEach(d => d.classList.add('hidden'));
     // hide messages
     messages.classList.add('hidden');
     // hide profile update form
     form_UpdateProfile.classList.add('hidden');
 
-    // display desired div
+    // display desired sec
     element.classList.remove('hidden');
 }
 // call on page load - go to home screen
-displayDiv(div_Home);
+displaySec(sec_Home);
 
 
 // display messages
@@ -202,10 +212,10 @@ function displayMessage (success, message)
 // show profile info
 async function showProfile ()
 {
-    // show profile div
-    displayDiv(div_Profile);
+    // show profile sec
+    displaySec(sec_Profile);
     // show profile info and edit button
-    sec_ProfileInfo.classList.remove('hidden');
+    div_ProfileInfo.classList.remove('hidden');
     but_EditProfile.classList.remove('hidden');
 
     // grab user
@@ -229,7 +239,7 @@ function editProfile ()
 {
     // hide edit button and profile info
     but_EditProfile.classList.add('hidden');
-    sec_ProfileInfo.classList.add('hidden');
+    div_ProfileInfo.classList.add('hidden');
     // hide messages
     messages.classList.add('hidden');
     // show update form and fill fields
