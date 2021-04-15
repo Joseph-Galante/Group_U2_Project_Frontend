@@ -109,16 +109,21 @@ document.querySelector('#signup').addEventListener('submit', async (event) =>
         // show message
         displayMessage(true, `Hello, ${name}!`)
     }
-    // validation error - duplicate email
-    else if (res.error.message === 'email already taken')
+    else
     {
-        displayMessage(false, `Email already taken. Use a different email or login.`)
+        displayMessage(false, 'There was a problem signing you up. Please refresh the page and try again.')
     }
 
-
     } catch (error) {
-        alert('email is already taken');
-        console.log(error.message)
+        // validation error - duplicate email
+        if (error.message === 'email is already taken')
+        {
+            displayMessage(false, `Email already taken. Use a different email or login.`)
+        }
+        else
+        {
+            console.log(error.message)
+        }
     }
 })
 
