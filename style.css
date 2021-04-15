@@ -5,6 +5,14 @@
 
 body {
     height: 100vh;
+    background-image: url(https://images.unsplash.com/photo-1618411248506-5d5c2e6a63ae?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.navigation-links {
+    background-color: rgb(0, 0, 0, .6);
+    height: 30px;
 }
 
 .nav-link {
@@ -33,6 +41,7 @@ body {
 #sign_up_box{
     height: 40vw;
     width: 33vw;
+    margin: 10px;
 }
 #signup{
     width: 100%;
@@ -41,7 +50,10 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-
+    background-color: #59788e;
+    border: 3px solid #7285a5;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px;
 }
 
 #divider{
@@ -64,6 +76,42 @@ body {
     align-items: center;
 
 }
+
+.profile {
+    border: 1px solid black;
+    height: 100%;
+}
+
+.profile-info {
+    border: 1px solid #7285a5;
+    background-color: #59788e;
+    width: 25%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.update-form {
+    border: 1px solid black;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#update-name {
+    width: 200px;
+    color: #ff0000;
+}
+
+#update-email {
+    width: 200px;
+    color: #ff0000;
+}
+
 
 .labelAndInput{
     display: flex;
@@ -92,6 +140,8 @@ body {
     background-color: rgba(0,0,0,.7);
     border-radius: 2%;
     padding: .5vw 2vw .5vw 2vw;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
 .buttons:hover{
@@ -104,6 +154,11 @@ body {
     border-radius: 6%;
     border: 2px solid green;
     padding: 8px;
+}
+
+#messages {
+    font-family: monospace;
+    font-size: 18px;
 }
 .fail {
     color: red;
@@ -183,8 +238,11 @@ body {
       width: fit-content;
   }
 
-    h1 {
+    .welcome_message {
         text-align: center;
+        font-size: 60px;
+        font-family: 'Zilla Slab Highlight', sans-serif;
+        color: #59788e;
     }
 
   .business-details {
