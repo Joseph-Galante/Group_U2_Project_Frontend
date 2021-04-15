@@ -7,12 +7,48 @@
     <title>Welp</title>
 </head>
 <body>
+    <nav class="navigation-links">
+        <span id="home-link" class="nav-link">Home</span>
+        <span id="signup-link" class="nav-link">Sign Up</span>
+        <span id="login-link" class="nav-link">Login</span>
+        <span id="profile-link" class="nav-link">Profile</span>
+        <span id="logout-link" class="nav-link">Logout</span>
+    </nav>
+
+    <h4 class="hidden" id="messages"></h4>
+
+    <section class="home">
+        <h1>Welcome to Welp</h1>
+    </section>
+    
+    <section class="profile">
+        <section class="profile-info">
+            <h2 id="name-label">Name:</h2>
+            <h3 id="profile-name">Name</h3>
+            <h2 id="email-label">Email:</h2>
+            <h3 id="profile-email">Email</h3>
+            <!-- <h2 id="password-label">Password:</h2>
+            <h3 id="profile-password">Password</h3> -->
+        </section>
+        <input type="button" id="edit-user" value="Edit">
+        <form class="update-form">
+            <label for="update-name">Name</label>
+            <input type="text" id="update-name">
+
+            <label for="update-email">Email</label>
+            <input type="text" id="update-email">
+            
+            <!-- <label for="update-password">Password</label>
+            <input type="password" id="update-password"> -->
+            <section class="change-buttons">
+                <input type="button" id="cancel-changes" value="Cancel Changes">
+                <input type="button" id="save-changes" value="Save Changes">
+            </section>
+        </form>
+    </section>
+
     <section class="businesses-state">
         <div class="nav-container">
-        <nav class="navigation-btns">
-            <button class="home">Home</button>
-            <button class="logout">Log Out</button>
-        </nav>
         </div>
         <div class="form-container">
             <form class="creation-form">
