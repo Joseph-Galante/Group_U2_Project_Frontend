@@ -23,16 +23,16 @@ app.get('/', (req, res) => {
 
 app.get('/main.js', async (req, res) => {
   const filepath = path.join(__dirname, 'main.js')
-//   // check if running locally
-//   if (process.env.NODE_ENV === 'production')
-//   {
-//     await replaceInFile(
-//     {
-//       files: filepath,
-//       from: 'http://localhost:3001',
-//       to: 
-//     })
-//   }
+  // check if running locally
+  if (process.env.NODE_ENV === 'production')
+  {
+    await replaceInFile(
+    {
+      files: filepath,
+      from: 'http://localhost:3001',
+      to: 'https://group-welp-api.herokuapp.com'
+    })
+  }
   res.sendFile(filepath)
 })
 
