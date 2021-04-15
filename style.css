@@ -99,13 +99,6 @@ body {
     background-color: rgba(200,0, 0, .7);
 }
 
-
-.navigation-btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-left: 10px;
-}
 .success {
     background-color: white;
     border-radius: 6%;
