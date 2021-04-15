@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Welp</title>
 </head>
 <body>
+    <section class="businesses-state">
+        <div class="nav-container">
+        <nav class="navigation-btns">
+            <button class="home">Home</button>
+            <button class="logout">Log Out</button>
+        </nav>
+        </div>
+        <div class="form-container">
+            <form class="creation-form">
+                <h1>Create New Business</h1>
+                <div class="form-control">
+                    <label for="name">Business Name</label>
+                    <input type="text" id="business-name" placeholder="business name">
+                </div>
+                <div class="form-control">
+                    <label for="address"> Business Address</label>
+                    <input type="text" id="business-address" placeholder="business address">
+                </div>
+                <div class="form-control">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" placeholder="description">
+                </div>
+                <div class="form-control">
+                    <label for="type">Type</label>
+                    <select name="business type" id="type">
+                        <option value="">--Please Choose an Option</option>
+                        <option value="Retail">Retail</option>
+                        <option value="Restaurant">Restaurant</option>
+                        <option value="Health & Beauty">Health & Beauty</option>
+                        <option value="automotive">automotive</option>
+                        <option value="entertainment">entertainment</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <input type="button" id="submit-btn" value="submit">
+                </div>
+            </form>
+        </div>
+    </section>
 
     <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>
     <script async defer src="./main.js"></script>
