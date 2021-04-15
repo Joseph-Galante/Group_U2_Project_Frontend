@@ -73,6 +73,7 @@ nav_LogoutLink.addEventListener('click', () => {
 nav_AllBusinessesLink.addEventListener('click', () => {
     // to all businesses
     showAllBusinesses();
+    initializeAllBsnList();
 
 })
 
@@ -302,5 +303,67 @@ function cancelChanges ()
 {
     // display profile info and edit button
     showProfile();
+}
+
+/* -------------------------- all businesses state -------------------------- */
+//document queries
+const allBsnList = document.querySelector('#business-list')
+const bsnName = document.querySelector('#bsn-name')
+const bsnAddress = document.querySelector('#bsn-address')
+const bsnDescription = document.querySelector('#bsn-description')
+const bsnType = document.querySelector('#bsn-type')
+
+//make business clickable and display the business details
+function clickBsn(div,bsn){
+    div.addEventListener('click', () => {
+        bsnName.innerHTML = bsn.name;
+        bsnAddress.innerHTML = bsn.address;
+        bsnDescription.innerHTML = bsn.description;
+        bsnType.innerHTML = bsn.type;
+
+    })
+}
+
+
+//populates all businesses list
+async function initializeAllBsnList(){
+    try{
+        //get all businesses
+        let response = await axios.get(`${API_URL}/businesses/`)
+
+        var businesses = response.data.businesses;
+
+        //clear all business list
+        allBsnList.innerHTML = '';
+
+        //make div for each business and append to list box
+        for(i=0; i<businesses.length;i++){
+            //make the div
+            var bsn_div = document.createElement('div')
+            //add the class
+            bsn_div.classList.add('listed-business')
+
+            // //add the id associated with the bsn's id in database
+            // bsn_div.setAttribute('id',businesses[i].id)
+
+            //add bsn name to inner html
+            bsn_div.innerHTML= businesses[i].name
+
+            //make clickable
+            clickBsn(bsn_div, businesses[i]);
+
+            //append div to list box
+            allBsnList.appendChild(bsn_div);
+            
+
+        }
+
+
+
+
+    }catch(error){
+        console.log(error)
+    }
+
 }
 
