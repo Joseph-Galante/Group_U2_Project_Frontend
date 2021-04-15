@@ -17,9 +17,12 @@ const nav_LogoutLink = document.querySelector('#logout-link');
 const sec_Home = document.querySelector('.welcome_screen');
 const sec_LoginSignUp = document.querySelector('.log_sign_screen');
 const sec_Profile = document.querySelector('.profile');
+const sec_Review = document.querySelector('.reviews-state');
+const sec_PostReview = document.querySelector('.post-review');
 
 // divs
 const div_ProfileInfo = document.querySelector('.profile-info');
+const div_Reviews = document.querySelector('.reviews');
 
 // forms
 const form_UpdateProfile = document.querySelector('.update-form');
@@ -28,6 +31,9 @@ const form_UpdateProfile = document.querySelector('.update-form');
 const but_EditProfile = document.querySelector('#edit-user');
 const but_CancelChanges = document.querySelector('#cancel-changes');
 const but_SaveChanges = document.querySelector('#save-changes');
+const but_ShowPostReview = document.querySelector('#post-review-button');
+const but_PostReview = document.querySelector('#post-review');
+const but_CancelReview = document.querySelector('#cancel-review');
 
 // misc
 const messages = document.querySelector('#messages');
@@ -75,6 +81,16 @@ but_SaveChanges.addEventListener('click', saveChanges);
 // cancel profile changes
 but_CancelChanges.addEventListener('click', cancelChanges);
 
+// post business review
+but_ShowPostReview.addEventListener('click', () =>
+{
+    // go to post review page
+    displaySec(sec_PostReview);
+});
+// post review
+but_PostReview.addEventListener('click', postReview);
+// cancel review
+but_CancelReview.addEventListener('click', cancelReview);
 
 //=============== FORM SUBMISSIONS ===============//
 
@@ -303,3 +319,77 @@ function cancelChanges ()
     showProfile();
 }
 
+
+// reviews
+displaySec(sec_Review);
+// localStorage.setItem('businessId', this.id);
+// populate reviews div
+getBusinessReviews();
+
+// post a business review
+async function postReview ()
+{
+    // review information
+    const headline = document.querySelector('#post-review-headline').value;
+    const content = document.querySelector('#post-review-content').value;
+    const rating = document.querySelector('#post-review-rating').value;
+
+    // post review
+    const res = await axios.post(`${API_URL}/users/businesses/:id/reviews`, {
+        headline: headline,
+        content: content,
+        rating: rating
+    },
+    {
+        headers: {
+            Authorization: localStorage.getItem('userId')
+        }
+    })
+
+    // return to business page with reviews
+    displaySec(sec_Review);
+    getBusinessReviews();
+}
+// cancel review
+function cancelReview ()
+{
+    // display reviews page
+    displaySec(sec_Review);
+}
+
+// get business reviews
+async function getBusinessReviews ()
+{
+    // clear reviews div
+    div_Reviews.innerHTML = '';
+    // get business id
+    const businessId = localStorage.getItem('bussinessId');
+    try {
+        // get reviews
+        const res = await axios.get(`${API_URL}/businesses/${businessId}/reviews`);
+        console.log(res.data);
+        const reviews = res.data.reviews;
+
+        // display reviews
+        reviews.forEach(review =>
+        {
+            // create div elements for each review
+            const reviewDiv = document.createElement('div');
+            // create headline, content, rating elements
+            const headlineEl = document.createElement('h3');
+            const contentEl = document.createElement('h5');
+            const ratingEl = document.createElement('h4');
+            // populate elements with review info
+            headlineEl.innerHTML = review.headline;
+            contentEl.innerHTML = review.content;
+            ratingEl.innerHTML = review.rating;
+            // add review to new div
+            reviewDiv.append(headlineEl, contentEl, ratingEl);
+            // add new div to reviews div
+            div_Reviews.append(reviewDiv);
+        })
+    } catch (error) {
+        console.log(error);
+        // message in review section
+    }
+}

@@ -143,6 +143,8 @@
                 <li class="details">Type</li>
             </ul>
             <h3 class="listed-by">Listed By: Tom</h3>
+
+            <input type="button" id="post-review-button" value="Post A Review">
         </div>
         <div class="reviews">
             <p class="user-reviews">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi, ex. Sapiente, molestiae placeat! Quo, maxime.</p>
@@ -151,6 +153,23 @@
             <p class="user-reviews">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi, ex. Sapiente, molestiae placeat! Quo, maxime.</p>
             <p class="user-reviews">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi, ex. Sapiente, molestiae placeat! Quo, maxime.</p>
         </div>
+    </section>
+    <section class="post-review">
+        <form class="review-form">
+            <label for="post-review-headline">Name</label>
+            <input type="text" id="post-review-headline" placeholder="Headline">
+
+            <label for="post-review-content">Content</label>
+            <input type="text" id="post-review-content" placeholder="Content">
+
+            <label for="post-review-rating">Rating</label>
+            <input type="number" id="post-review-rating" placeholder="Rating">
+            
+            <div class="post-buttons">
+                <input type="button" id="cancel-review" value="Cancel Post">
+                <input type="button" id="post-review" value="Post Review">
+            </div>
+        </form>
     </section>
 
     <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>
