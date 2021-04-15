@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+}
+
+
+
+/* connors stuff */
+
+
+
+#welcome_screen{
+
+}
+
+#log_sign_screen{
+
+}
+
+#details_reviews{
+    
+}
+
+
+
+/* connors stuff ^^ */
+
+.businesses-state {
+    height: 100%;
+    width: 100%;
+}
+
+
+.navigation-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 10px;
+}
+
+.home {
+    height: 25px;
+    width: 100px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.logout {
+    margin-left: 10px;
+    width: 100px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    margin: 100px;
+}
+
+.creation-form {
+    border: 1px solid black;
+    padding: 30px 40px;
+}
+
+.form-control {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    position: relative;
+  }
+
+  .form-control label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .form-control input {
+      width: 100%;
+      border-radius: 5px;
+      padding: 5px;
+  }
+
+  #submit-btn {
+      cursor: pointer;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 16px;
+  }
