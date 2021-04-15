@@ -104,6 +104,7 @@ body {
     width: 100%;
 }
 
+/* gregory stuff */
 
 .navigation-btns {
     display: flex;
@@ -184,5 +185,37 @@ body {
 
   .business-detail-container {
       border: 1px solid black;
-      height: 300px;
+      height: 400px;
+      width: fit-content;
+  }
+
+    h1 {
+        text-align: center;
+    }
+
+  .business-details {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .details {
+      margin: 15px;
+      text-align: center;
+  }
+
+  .listed-by {
+      text-align: center;
+  }
+
+  .reviews {
+      border: 1px solid black;
+      height: 400px;
+  }
+
+  .user-reviews {
+      margin: 15px;
+      border-bottom: 1px solid black;
   }
