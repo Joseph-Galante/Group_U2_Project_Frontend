@@ -252,9 +252,6 @@ body {
       font-size: 16px;
   }
 
-  .reviews-state {
-      border: 1px solid black;
-  }
 
   #hidden {
       display: none;
@@ -271,7 +268,26 @@ body {
   .business-detail-container {
       border: 1px solid black;
       height: 400px;
-      width: fit-content;
+      width: 400px;
+  }
+
+  .reviews {
+      border: 1px solid black;
+      height: 400px;
+      width: 400px;
+  }
+
+  .post-review {
+      border: 1px solid black;
+      height: 100%;
+  }
+
+  .review-form {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid black;
+      margin-left: 150px;
+      background-color: #59788e;
   }
 
 .welcome_message {
