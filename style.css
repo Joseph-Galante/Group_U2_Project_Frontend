@@ -269,12 +269,14 @@ body {
       border: 1px solid black;
       height: 400px;
       width: 400px;
+      background-color: #59788e;
   }
 
   .reviews {
       border: 1px solid black;
       height: 400px;
       width: 400px;
+      background-color: #59788e;
   }
 
   .post-review {
@@ -282,11 +284,21 @@ body {
       height: 100%;
   }
 
+  #post-review-headline {
+      width: 300px;
+  }
+
+  #post-review-content {
+      width: 800px;
+  }
+
   .review-form {
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
       border: 1px solid black;
-      margin-left: 150px;
+      margin: 100px;
       background-color: #59788e;
   }
 
