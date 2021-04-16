@@ -61,6 +61,11 @@ body {
     box-shadow: 1px 1px 1px 1px;
 }
 
+#signup label {
+    display: block;
+    margin: 5px;
+}
+
 #divider{
     height: 40vw;
     width: 1vw;
