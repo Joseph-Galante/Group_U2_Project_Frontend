@@ -36,6 +36,7 @@ const but_SaveChanges = document.querySelector('#save-changes');
 const but_ShowPostReview = document.querySelector('#post-review-button');
 const but_PostReview = document.querySelector('#post-review');
 const but_CancelReview = document.querySelector('#cancel-review');
+const but_ShowReviews = document.querySelector('#show-reviews');
 
 // misc
 const messages = document.querySelector('#messages');
@@ -90,6 +91,13 @@ but_SaveChanges.addEventListener('click', saveChanges);
 // cancel profile changes
 but_CancelChanges.addEventListener('click', cancelChanges);
 
+// show business review page
+but_ShowReviews.addEventListener('click', () =>
+{
+    displaySec(sec_Review);
+    // populate reviews div
+    getBusinessReviews();
+})
 // post business review
 but_ShowPostReview.addEventListener('click', () =>
 {
@@ -178,7 +186,7 @@ document.querySelector('#login').addEventListener('submit', async (event) =>
     displayMessage(true, `Hello, ${res.data.name}!`)
 
     } catch (error) {
-        alert('login failed');
+        alert('Login info is invalid');
         console.log(error.message);
     }
 })
@@ -198,13 +206,17 @@ function checkForUser ()
     // display profile, logout links
     nav_ProfileLink.classList.remove('hidden');
     nav_LogoutLink.classList.remove('hidden');
-  }
-  // no user logged in
-  else
-  {
+    // show review button
+    but_ShowPostReview.classList.remove('hidden');
+}
+// no user logged in
+else
+{
     // hide profile, logout links
     nav_ProfileLink.classList.add('hidden');
     nav_LogoutLink.classList.add('hidden');
+    // hide review button
+    but_ShowPostReview.classList.add('hidden');
     // display signup, login links
     nav_SignupLink.classList.remove('hidden');
     nav_LoginLink.classList.remove('hidden');
@@ -253,8 +265,6 @@ async function showAllBusinesses ()
 {
     //show allbusinesses sec
     displaySec(sec_AllBusiness);
-    //
-
 }
 
 // show profile info
@@ -360,22 +370,25 @@ function clickBsn(div,bsn){
 async function initializeAllBsnList(){
     try{
         //get all businesses
-        let response = await axios.get(`${API_URL}/businesses/`)
+        let response = await axios.get(`${API_URL}/businesses/`);
 
-        var businesses = response.data.businesses;
+        const businesses = response.data.businesses;
 
         //clear all business list
         allBsnList.innerHTML = '';
 
         //make div for each business and append to list box
-        for(i=0; i<businesses.length;i++){
+        for(let i=0; i<businesses.length;i++){
             //make the div
-            var bsn_div = document.createElement('div')
+            const bsn_div = document.createElement('div')
             //add the class
             bsn_div.classList.add('listed-business')
 
             // //add the id associated with the bsn's id in database
             // bsn_div.setAttribute('id',businesses[i].id)
+            
+            // add business id to local storage - for posting/getting reviews
+            localStorage.setItem('businessId', businesses[i].id);
 
             //add bsn name to inner html
             bsn_div.innerHTML= businesses[i].name
@@ -389,21 +402,12 @@ async function initializeAllBsnList(){
 
         }
 
-
-
-
     }catch(error){
         console.log(error)
     }
 
 }
 
-
-// reviews
-// displaySec(sec_Review);
-// localStorage.setItem('businessId', this.id);
-// populate reviews div
-// getBusinessReviews();
 
 // post a business review
 async function postReview ()
@@ -412,9 +416,11 @@ async function postReview ()
     const headline = document.querySelector('#post-review-headline').value;
     const content = document.querySelector('#post-review-content').value;
     const rating = document.querySelector('#post-review-rating').value;
+    
+    const businessId = localStorage.getItem('businessId');
 
     // post review
-    const res = await axios.post(`${API_URL}/users/businesses/:id/reviews`, {
+    const res = await axios.post(`${API_URL}/users/businesses/${businessId}/reviews`, {
         headline: headline,
         content: content,
         rating: rating
