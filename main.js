@@ -91,12 +91,30 @@ but_SaveChanges.addEventListener('click', saveChanges);
 // cancel profile changes
 but_CancelChanges.addEventListener('click', cancelChanges);
 
-// show business review page
-but_ShowReviews.addEventListener('click', () =>
+// business review page
+but_ShowReviews.addEventListener('click', async () =>
 {
-    displaySec(sec_Review);
-    // populate reviews div
-    getBusinessReviews();
+    // grab business id
+    const businessId = localStorage.getItem('businessId');
+    try {
+        // get business
+        const res = await axios.get(`${API_URL}/businesses/${businessId}`);
+        const business = res.data.business;
+
+        // populate reviews page with business info
+        document.querySelector('#reviews-business-name').innerHTML = business.name;
+        document.querySelector('#reviews-business-address').innerHTML = business.address;
+        document.querySelector('#reviews-business-description').innerHTML = business.description;
+        document.querySelector('#reviews-business-type').innerHTML = business.type;
+        document.querySelector('#reviews-business-owner').innerHTML = `Listed by: ${business.owner}`;
+        
+        // show reviews page
+        displaySec(sec_Review);
+        // populate reviews div
+        getBusinessReviews();
+    } catch (error) {
+        console.log(error.message);
+    }
 })
 // post business review
 but_ShowPostReview.addEventListener('click', () =>
@@ -265,6 +283,8 @@ async function showAllBusinesses ()
 {
     //show allbusinesses sec
     displaySec(sec_AllBusiness);
+    // hide reviews button
+    but_ShowReviews.classList.add('hidden');
 }
 
 // show profile info
@@ -353,6 +373,7 @@ const bsnName = document.querySelector('#bsn-name')
 const bsnAddress = document.querySelector('#bsn-address')
 const bsnDescription = document.querySelector('#bsn-description')
 const bsnType = document.querySelector('#bsn-type')
+const bsnLister = document.querySelector('#bsn-lister')
 
 //make business clickable and display the business details
 function clickBsn(div,bsn){
@@ -361,7 +382,9 @@ function clickBsn(div,bsn){
         bsnAddress.innerHTML = bsn.address;
         bsnDescription.innerHTML = bsn.description;
         bsnType.innerHTML = bsn.type;
-
+        bsnLister.innerHTML = bsn.owner;
+        // show reviews button
+        but_ShowReviews.classList.remove('hidden');
     })
 }
 
@@ -403,7 +426,7 @@ async function initializeAllBsnList(){
         }
 
     }catch(error){
-        console.log(error)
+        console.log(error.message)
     }
 
 }
@@ -419,21 +442,25 @@ async function postReview ()
     
     const businessId = localStorage.getItem('businessId');
 
-    // post review
-    const res = await axios.post(`${API_URL}/users/businesses/${businessId}/reviews`, {
-        headline: headline,
-        content: content,
-        rating: rating
-    },
-    {
-        headers: {
-            Authorization: localStorage.getItem('userId')
-        }
-    })
+    try {
+        // post review
+        const res = await axios.post(`${API_URL}/users/businesses/${businessId}/reviews`, {
+            headline: headline,
+            content: content,
+            rating: rating
+        },
+        {
+            headers: {
+                Authorization: localStorage.getItem('userId')
+            }
+        })
 
-    // return to business page with reviews
-    displaySec(sec_Review);
-    getBusinessReviews();
+        // return to business page with reviews
+        displaySec(sec_Review);
+        getBusinessReviews();
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 // cancel review
 function cancelReview ()
@@ -442,21 +469,35 @@ function cancelReview ()
     displaySec(sec_Review);
 }
 
+
 // get business reviews
 async function getBusinessReviews ()
 {
     // clear reviews div
     div_Reviews.innerHTML = '';
     // get business id
-    const businessId = localStorage.getItem('bussinessId');
+    const businessId = localStorage.getItem('businessId');
+    // reverse reviews array - used to display reviews from newest to oldest
+    let revReviews = [];
     try {
         // get reviews
         const res = await axios.get(`${API_URL}/businesses/${businessId}/reviews`);
-        console.log(res.data);
         const reviews = res.data.reviews;
-
+        // check if reviews is empty
+        if (reviews.length === 0)
+        {
+            return;
+        }
+        else
+        {
+            // reverse reviews
+            while (reviews.length > 0)
+            {
+                revReviews.push(reviews.pop());
+            }
+        }
         // display reviews
-        reviews.forEach(review =>
+        revReviews.forEach(review =>
         {
             // create div elements for each review
             const reviewDiv = document.createElement('div');
@@ -474,7 +515,7 @@ async function getBusinessReviews ()
             div_Reviews.append(reviewDiv);
         })
     } catch (error) {
-        console.log(error);
+        console.log('business reviews', error.message);
         // message in review section
     }
 }
