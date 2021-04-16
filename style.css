@@ -252,82 +252,81 @@ body {
 .form-control label {
     display: block;
     margin-bottom: 5px;
-  }
+}
 
-  .form-control input {
-      width: 100%;
-      border-radius: 5px;
-      padding: 5px;
-  }
+.form-control input {
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+}
 
-  #submit-btn {
-      cursor: pointer;
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 16px;
-  }
+#submit-btn {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+}
 
+.reviews-state {
+    border: 1px solid black;
+}
 
-  #hidden {
-      display: none;
-  }
+#hidden {
+    display: none;
+}
 
-  .reviews-state {
-      height: 100%;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      align-items: center;
-  }
+.reviews-state {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
-  .business-detail-container {
-      border: 1px solid black;
-      box-shadow: 1px 1px 1px 1px;
-      height: 400px;
-      width: 400px;
-      background-color: #59788e;
-      position: relative;
-  }
+.business-detail-container {
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
+    background-color: #59788e;
+    position: relative;
+}
 
-  .reviews {
-      border: 1px solid black;
-      box-shadow: 1px 1px 1px 1px;
-      height: 400px;
-      width: 400px;
-      background-color: #59788e;
-      text-align: center;
-  }
+.reviews {
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
+    background-color: #59788e;
+    text-align: center;
+}
 
-  .reviews div {
-      margin-top: 10px;
-      border-bottom: 1px solid black;
-  }
+.reviews div {
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+}
 
-  .post-review {
-      border: 1px solid black;
-      height: 100%;
-  }
+.post-review {
+    border: 1px solid black;
+    height: 100%;
+}
 
-  #post-review-headline {
-      width: 300px;
-  }
+#post-review-headline {
+    width: 300px;
+}
 
-  #post-review-content {
-      width: 800px;
-  }
+#post-review-content {
+    width: 800px;
+}
 
-  .review-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      border: 1px solid black;
-      box-shadow: 1px 1px 1px 1px;
-      border-radius: 5px;
-      margin: 100px;
-      background-color: #59788e;
-  }
+.review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 100px;
+    background-color: #59788e;
+}
 
 .welcome_message {
     text-align: center;
@@ -356,11 +355,6 @@ body {
 #post-review-button {
     position: absolute;
     left: 80px;
-}
-
-.reviews {
-    border: 1px solid black;
-    height: 400px;
 }
 
 .user-reviews {
@@ -427,6 +421,19 @@ input[type=button]:hover {
     background-color: #003152;
 }
 
+#edit-business {
+    background-color: teal;
+}
+#edit-business:hover {
+    background-color: #000000;
+}
+#delete-business {
+    background-color: orangered;
+}
+#delete-business:hover {
+    background-color: #000000;
+}
+
 .hidden {
     display: none;
 }
@@ -484,7 +491,6 @@ h1 {
     align-items: center;
     height: 80%;
 }
-
 
 /* ------------------------------ my businesses ----------------------------- */
 #list-my-businesses{
