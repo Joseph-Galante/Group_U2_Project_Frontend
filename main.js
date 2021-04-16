@@ -25,9 +25,11 @@ const sec_AllBusiness = document.querySelector('.all-businesses-screen');
 // divs
 const div_ProfileInfo = document.querySelector('.profile-info');
 const div_Reviews = document.querySelector('.reviews');
+const div_BusDetailsBtns = document.querySelector('#business-details-buttons');
 
 // forms
 const form_UpdateProfile = document.querySelector('.update-form');
+const form_UpdateBusiness = document.querySelector('.business-update-form');
 
 // buttons
 const but_EditProfile = document.querySelector('#edit-user');
@@ -38,6 +40,8 @@ const but_PostReview = document.querySelector('#post-review');
 const but_CancelReview = document.querySelector('#cancel-review');
 const but_EditBusiness = document.querySelector('#edit-business');
 const but_DeleteBusiness = document.querySelector('#delete-business');
+const but_CancelBusinessUpdate = document.querySelector('#cancel-business-update');
+const but_SaveBusinessUpdate = document.querySelector('#save-business-update');
 
 // misc
 const messages = document.querySelector('#messages');
@@ -103,6 +107,72 @@ but_ShowPostReview.addEventListener('click', () =>
 but_PostReview.addEventListener('click', postReview);
 // cancel review
 but_CancelReview.addEventListener('click', cancelReview);
+
+// show edit business form
+but_EditBusiness.addEventListener('click', () =>
+{
+    // hide business details while editing
+    document.querySelector('.business-details').classList.add('hidden');
+    div_BusDetailsBtns.classList.add('hidden');
+    // show update buttons and form
+    but_CancelBusinessUpdate.classList.remove('hidden');
+    but_SaveBusinessUpdate.classList.remove('hidden');
+    form_UpdateBusiness.classList.remove('hidden');
+    // populate form
+    document.querySelector('#business-update-name').value = document.querySelector('#reviews-business-name').innerHTML;
+    document.querySelector('#business-update-address').value = document.querySelector('#reviews-business-address').innerHTML;
+    document.querySelector('#business-update-description').value = document.querySelector('#reviews-business-description').innerHTML;
+    document.querySelector('#business-update-type').value = document.querySelector('#reviews-business-type').innerHTML;
+})
+// update business
+but_SaveBusinessUpdate.addEventListener('click', async () =>
+{
+    // get values from form
+    const name = document.querySelector('#business-update-name').value;
+    const address = document.querySelector('#business-update-address').value;
+    const description = document.querySelector('#business-update-description').value;
+    const type = document.querySelector('#business-update-type').value;
+    // update business
+    const res = await axios.put(`${API_URL}/users/businesses/${localStorage.getItem('businessId')}`, {
+        name: name,
+        address: address,
+        description: description,
+        type: type
+    }, {
+        headers: {
+            Authorization: localStorage.getItem('userId')
+        }
+    })
+
+    // show new business details
+    await getBusinessDetails();
+    // show details buttons
+    div_BusDetailsBtns.classList.remove('hidden');
+    displayMessage(true, 'Business updated successfully.');
+})
+// cancel business updates
+but_CancelBusinessUpdate.addEventListener('click', () =>
+{
+    // hide update buttons
+    but_CancelBusinessUpdate.classList.add('hidden');
+    but_SaveBusinessUpdate.classList.add('hidden');
+    // show details buttons
+    div_BusDetailsBtns.classList.remove('hidden');
+    getBusinessDetails();
+})
+// delete business
+but_DeleteBusiness.addEventListener('click', async () =>
+{
+    await axios.delete(`${API_URL}/users/businesses/${localStorage.getItem('businessId')}`, {
+        headers: {
+            Authorization: localStorage.getItem('userId')
+        }
+    })
+    // take to all business section
+    displaySec(sec_AllBusiness);
+    initializeAllBsnList();
+    displayMessage(true, 'Business deleted successfully.');
+})
 
 //=============== FORM SUBMISSIONS ===============//
 
@@ -191,20 +261,27 @@ document.querySelector('#login').addEventListener('submit', async (event) =>
 
 //business details / reviews page
 async function getBusinessDetails(){
-        // grab business id
-        const businessId = localStorage.getItem('businessId');
-        try {
-            // get business
-            const res = await axios.get(`${API_URL}/businesses/${businessId}`);
-            const business = res.data.business;
-    
-            // populate reviews page with business info
-            document.querySelector('#reviews-business-name').innerHTML = business.name;
-            document.querySelector('#reviews-business-address').innerHTML = business.address;
-            document.querySelector('#reviews-business-description').innerHTML = business.description;
-            document.querySelector('#reviews-business-type').innerHTML = business.type;
-            document.querySelector('#reviews-business-owner').innerHTML = `Listed by: ${business.owner}`;
-            
+    // hide update form
+    form_UpdateBusiness.classList.add('hidden');
+    // show business details
+    document.querySelector('.business-details').classList.remove('hidden');
+    // grab business id
+    const businessId = localStorage.getItem('businessId');
+    try {
+        // get business
+        const res = await axios.get(`${API_URL}/businesses/${businessId}`);
+        const business = res.data.business;
+
+        // populate reviews page with business info
+        document.querySelector('#reviews-business-name').innerHTML = business.name;
+        document.querySelector('#reviews-business-address').innerHTML = business.address;
+        document.querySelector('#reviews-business-description').innerHTML = business.description;
+        document.querySelector('#reviews-business-type').innerHTML = business.type;
+        document.querySelector('#reviews-business-owner').innerHTML = `Listed by: ${business.owner}`;
+        
+        // check if user logged in
+        if (localStorage.getItem('userId'))
+        {
             // check for owner as user
             let user;
             // get user
@@ -219,7 +296,6 @@ async function getBusinessDetails(){
                 // grab user
                 user = userRes.data.user;
             }
-
             // show reviews page
             displaySec(sec_Review);
             // populate reviews div
@@ -231,31 +307,42 @@ async function getBusinessDetails(){
                 but_EditBusiness.classList.remove('hidden');
                 but_DeleteBusiness.classList.remove('hidden');
             }
-        } catch (error) {
-            console.log(error.message);
         }
+        // no user logged in
+        else
+        {
+            // show reviews page
+            displaySec(sec_Review);
+            // populate reviews div
+            getBusinessReviews();
+        }
+
+    } catch (error) {
+        console.log(error.message);
+    }
 }
 
 
 // displays appropriate nav links when user is logged in or out
 async function checkForUser ()
 {
-    // check if user still exists
-    try {
-        // try to find user
-        const res = await axios.get(`${API_URL}/users`, {
-            headers: {
-                Authorization: localStorage.getItem('userId')
+    // check if user id exists
+    if (localStorage.getItem('userId'))
+    {
+        try {
+            // try to find user
+            const res = await axios.get(`${API_URL}/users/verify`, {
+                headers: {
+                    Authorization: localStorage.getItem('userId')
+                }
+            })
+        } catch (error) {
+            console.log(error.message);
+            if (error.message === 'Request failed with status code 400')
+            {
+                localStorage.removeItem('userId');
             }
-        })
-        // check if user exists
-        if (res.status !== 200)
-        {
-            // logout invalid user
-            localStorage.removeItem('userId');
         }
-    } catch (error) {
-        console.log(error.message);
     }
 
     // check for logged in user on page load
@@ -405,7 +492,6 @@ async function saveChanges ()
         alert('profile could not be updated');
     }
 }
-
 // cancel profile changes
 function cancelChanges ()
 {
@@ -546,8 +632,7 @@ async function postReview ()
         })
 
         // return to business page with reviews
-        displaySec(sec_Review);
-        getBusinessReviews();
+        getBusinessDetails();
     } catch (error) {
         console.log(error.message);
     }
@@ -556,7 +641,7 @@ async function postReview ()
 function cancelReview ()
 {
     // display reviews page
-    displaySec(sec_Review);
+    getBusinessDetails();
 }
 
 

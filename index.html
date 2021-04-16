@@ -155,12 +155,29 @@
                 <li class="details" id="reviews-business-address">Address</li>
                 <li class="details" id="reviews-business-description">Description</li>
                 <li class="details" id="reviews-business-type">Type</li>
+                <li class="listed-by" id="reviews-business-owner">Listed By: Tom</li>
             </ul>
-            <h3 class="listed-by" id="reviews-business-owner">Listed By: Tom</h3>
+            <form class="business-update-form hidden">
+                <label for="business-update-name">Name</label>
+                <input type="text" id="business-update-name" placeholder="Address">
+                <label for="business-update-address">Address</label>
+                <input type="text" id="business-update-address" placeholder="Name">
+                <label for="business-update-description">Description</label>
+                <input type="text" id="business-update-description" placeholder="Description">
+                <label for="business-update-type">Type</label>
+                <input type="text" id="business-update-type" placeholder="Type">
+
+                <div class="business-update-buttons">
+                    <input type="button" id="cancel-business-update" value="Cancel Changes">
+                    <input type="button" id="save-business-update" value="Save Changes">
+                </div>
+            </form>
             
-            <input type="button" class="hidden" id="edit-business" value="Edit Business">
-            <input type="button" class="hidden" id="delete-business" value="Delete Business">
-            <input type="button" id="post-review-button" value="Post A Review">
+            <div id="business-details-buttons">
+                <input type="button" class="hidden" id="edit-business" value="Edit Business">
+                <input type="button" class="hidden" id="delete-business" value="Delete Business">
+                <input type="button" id="post-review-button" value="Post A Review">
+            </div>
             
         </div>
         <div class="reviews">
@@ -170,7 +187,7 @@
     </section>
     <section class="post-review">
         <form class="review-form">
-            <label for="post-review-headline">Name</label>
+            <label for="post-review-headline">Headline</label>
             <input type="text" id="post-review-headline" placeholder="Headline">
 
             <label for="post-review-content">Content</label>
