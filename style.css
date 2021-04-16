@@ -87,9 +87,10 @@ body {
 
 .profile {
     height: 100%;
-    /* display: flex;
-    align-items: flex-start;
-    justify-content: center; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
 }
 
@@ -270,6 +271,7 @@ body {
       height: 400px;
       width: 400px;
       background-color: #59788e;
+      position: relative;
   }
 
   .reviews {
@@ -277,6 +279,12 @@ body {
       height: 400px;
       width: 400px;
       background-color: #59788e;
+      text-align: center;
+  }
+
+  .reviews div {
+      margin-top: 10px;
+      border-bottom: 1px solid black;
   }
 
   .post-review {
@@ -298,6 +306,7 @@ body {
       align-items: center;
       justify-content: space-evenly;
       border: 1px solid black;
+      border-radius: 5px;
       margin: 100px;
       background-color: #59788e;
   }
@@ -324,6 +333,11 @@ body {
 
 .listed-by {
     text-align: center;
+}
+
+#post-review-button {
+    position: absolute;
+    left: 80px;
 }
 
 .reviews {
@@ -457,5 +471,5 @@ h1 {
     flex-direction: column;
     align-items: center;
     border: 5px solid black;
-    font-size: 22px;
+    font-size: 20px;
 }
