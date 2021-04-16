@@ -36,6 +36,8 @@ const but_SaveChanges = document.querySelector('#save-changes');
 const but_ShowPostReview = document.querySelector('#post-review-button');
 const but_PostReview = document.querySelector('#post-review');
 const but_CancelReview = document.querySelector('#cancel-review');
+const but_EditBusiness = document.querySelector('#edit-business');
+const but_DeleteBusiness = document.querySelector('#delete-business');
 
 // misc
 const messages = document.querySelector('#messages');
@@ -203,10 +205,32 @@ async function getBusinessDetails(){
             document.querySelector('#reviews-business-type').innerHTML = business.type;
             document.querySelector('#reviews-business-owner').innerHTML = `Listed by: ${business.owner}`;
             
+            // check for owner as user
+            let user;
+            // get user
+            const userRes = await axios.get(`${API_URL}/users/verify`, {
+                headers: {
+                    Authorization: localStorage.getItem('userId')
+                }
+            })
+            // check if user exists
+            if (userRes.status === 200)
+            {
+                // grab user
+                user = userRes.data.user;
+            }
+
             // show reviews page
             displaySec(sec_Review);
             // populate reviews div
             getBusinessReviews();
+            //check if user is owner
+            if (user.id === business.userId)
+            {
+                // show edit and delete buttons
+                but_EditBusiness.classList.remove('hidden');
+                but_DeleteBusiness.classList.remove('hidden');
+            }
         } catch (error) {
             console.log(error.message);
         }
@@ -214,32 +238,50 @@ async function getBusinessDetails(){
 
 
 // displays appropriate nav links when user is logged in or out
-function checkForUser ()
+async function checkForUser ()
 {
-  // check for logged in user on page load
-  if (localStorage.getItem('userId'))
-  {
-    // hide signup, login links
-    nav_SignupLink.classList.add('hidden');
-    nav_LoginLink.classList.add('hidden');
-    // display profile, logout links
-    nav_ProfileLink.classList.remove('hidden');
-    nav_LogoutLink.classList.remove('hidden');
-    // show review button
-    but_ShowPostReview.classList.remove('hidden');
-}
-// no user logged in
-else
-{
-    // hide profile, logout links
-    nav_ProfileLink.classList.add('hidden');
-    nav_LogoutLink.classList.add('hidden');
-    // hide review button
-    but_ShowPostReview.classList.add('hidden');
-    // display signup, login links
-    nav_SignupLink.classList.remove('hidden');
-    nav_LoginLink.classList.remove('hidden');
-  }
+    // check if user still exists
+    try {
+        // try to find user
+        const res = await axios.get(`${API_URL}/users`, {
+            headers: {
+                Authorization: localStorage.getItem('userId')
+            }
+        })
+        // check if user exists
+        if (res.status !== 200)
+        {
+            // logout invalid user
+            localStorage.removeItem('userId');
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
+
+    // check for logged in user on page load
+    if (localStorage.getItem('userId'))
+    {
+        // hide signup, login links
+        nav_SignupLink.classList.add('hidden');
+        nav_LoginLink.classList.add('hidden');
+        // display profile, logout links
+        nav_ProfileLink.classList.remove('hidden');
+        nav_LogoutLink.classList.remove('hidden');
+        // show review button
+        but_ShowPostReview.classList.remove('hidden');
+    }
+    // no user logged in
+    else
+    {
+        // hide profile, logout links
+        nav_ProfileLink.classList.add('hidden');
+        nav_LogoutLink.classList.add('hidden');
+        // hide review button
+        but_ShowPostReview.classList.add('hidden');
+        // display signup, login links
+        nav_SignupLink.classList.remove('hidden');
+        nav_LoginLink.classList.remove('hidden');
+    }
 }
 // call on page load - see if user is still logged in
 checkForUser();
@@ -254,6 +296,9 @@ function displaySec (element)
     messages.classList.add('hidden');
     // hide profile update form
     form_UpdateProfile.classList.add('hidden');
+    // hide edit and delete business buttons
+    but_EditBusiness.classList.add('hidden');
+    but_DeleteBusiness.classList.add('hidden');
 
     // display desired sec
     element.classList.remove('hidden');
@@ -278,6 +323,7 @@ function displayMessage (success, message)
     messages.innerHTML = message;
     messages.classList.remove('hidden');
 }
+
 
 //show all businesses
 async function showAllBusinesses ()

@@ -87,9 +87,9 @@ body {
 
 .profile {
     height: 100%;
-    /* display: flex;
+    display: flex;
     align-items: flex-start;
-    justify-content: center; */
+    justify-content: center;
 
 }
 
@@ -252,6 +252,9 @@ body {
       font-size: 16px;
   }
 
+  .reviews-state {
+      border: 1px solid black;
+  }
 
   #hidden {
       display: none;
@@ -268,38 +271,7 @@ body {
   .business-detail-container {
       border: 1px solid black;
       height: 400px;
-      width: 400px;
-      background-color: #59788e;
-  }
-
-  .reviews {
-      border: 1px solid black;
-      height: 400px;
-      width: 400px;
-      background-color: #59788e;
-  }
-
-  .post-review {
-      border: 1px solid black;
-      height: 100%;
-  }
-
-  #post-review-headline {
-      width: 300px;
-  }
-
-  #post-review-content {
-      width: 800px;
-  }
-
-  .review-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      border: 1px solid black;
-      margin: 100px;
-      background-color: #59788e;
+      width: fit-content;
   }
 
 .welcome_message {
@@ -390,6 +362,19 @@ input[type=button]:hover {
     background-color: #003152;
 }
 
+#edit-business {
+    background-color: teal;
+}
+#edit-business:hover {
+    background-color: #000000;
+}
+#delete-business {
+    background-color: orangered;
+}
+#delete-business:hover {
+    background-color: #000000;
+}
+
 .hidden {
     display: none;
 }
@@ -445,17 +430,4 @@ h1 {
     justify-content: space-evenly;
     align-items: center;
     height: 80%;
-}
-
-
-/* ------------------------------ my businesses ----------------------------- */
-#list-my-businesses{
-    height: 500px;
-    width: 400px; 
-    background-color: #59788e;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 5px solid black;
-    font-size: 22px;
 }
