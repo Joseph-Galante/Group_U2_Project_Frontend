@@ -274,40 +274,43 @@ body {
       width: fit-content;
   }
 
-    .welcome_message {
-        text-align: center;
-        font-size: 60px;
-        font-family: 'Zilla Slab Highlight', sans-serif;
-        color: #59788e;
-    }
+.welcome_message {
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Zilla Slab Highlight', sans-serif;
+    color: #59788e;
+}
 
-  .business-details {
-      list-style-type: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-  }
+.business-details {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
-  .details {
-      margin: 15px;
-      text-align: center;
-  }
+.details {
+    margin: 15px;
+    text-align: center;
+}
 
-  .listed-by {
-      text-align: center;
-  }
+.listed-by {
+    text-align: center;
+}
 
-  .reviews {
-      border: 1px solid black;
-      height: 400px;
-  }
+.reviews {
+    border: 1px solid black;
+    height: 400px;
+}
 
-  .user-reviews {
-      margin: 15px;
-      border-bottom: 1px solid black;
-  }
+.user-reviews {
+    margin: 15px;
+    border-bottom: 1px solid black;
+}
 
+.listed-business:hover {
+    cursor: pointer;
+}
 
 .form-control input {
     width: 100%;

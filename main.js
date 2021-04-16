@@ -206,13 +206,17 @@ function checkForUser ()
     // display profile, logout links
     nav_ProfileLink.classList.remove('hidden');
     nav_LogoutLink.classList.remove('hidden');
-  }
-  // no user logged in
-  else
-  {
+    // show review button
+    but_ShowPostReview.classList.remove('hidden');
+}
+// no user logged in
+else
+{
     // hide profile, logout links
     nav_ProfileLink.classList.add('hidden');
     nav_LogoutLink.classList.add('hidden');
+    // hide review button
+    but_ShowPostReview.classList.add('hidden');
     // display signup, login links
     nav_SignupLink.classList.remove('hidden');
     nav_LoginLink.classList.remove('hidden');
@@ -231,8 +235,6 @@ function displaySec (element)
     messages.classList.add('hidden');
     // hide profile update form
     form_UpdateProfile.classList.add('hidden');
-    // remove business id from local storage
-    localStorage.removeItem('businessId');
 
     // display desired sec
     element.classList.remove('hidden');
@@ -263,8 +265,6 @@ async function showAllBusinesses ()
 {
     //show allbusinesses sec
     displaySec(sec_AllBusiness);
-    //
-
 }
 
 // show profile info
@@ -371,7 +371,6 @@ async function initializeAllBsnList(){
     try{
         //get all businesses
         let response = await axios.get(`${API_URL}/businesses/`);
-        console.log(response)
 
         const businesses = response.data.businesses;
 
@@ -389,7 +388,7 @@ async function initializeAllBsnList(){
             // bsn_div.setAttribute('id',businesses[i].id)
             
             // add business id to local storage - for posting/getting reviews
-            localStorage.setItem('businessId');
+            localStorage.setItem('businessId', businesses[i].id);
 
             //add bsn name to inner html
             bsn_div.innerHTML= businesses[i].name
