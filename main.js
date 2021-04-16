@@ -95,27 +95,8 @@ but_CancelChanges.addEventListener('click', cancelChanges);
 // business review page
 but_ShowReviews.addEventListener('click', async () =>
 {
-    // grab business id
-    const businessId = localStorage.getItem('businessId');
-    try {
-        // get business
-        const res = await axios.get(`${API_URL}/businesses/${businessId}`);
-        const business = res.data.business;
+    await showReviews();
 
-        // populate reviews page with business info
-        document.querySelector('#reviews-business-name').innerHTML = business.name;
-        document.querySelector('#reviews-business-address').innerHTML = business.address;
-        document.querySelector('#reviews-business-description').innerHTML = business.description;
-        document.querySelector('#reviews-business-type').innerHTML = business.type;
-        document.querySelector('#reviews-business-owner').innerHTML = `Listed by: ${business.owner}`;
-        
-        // show reviews page
-        displaySec(sec_Review);
-        // populate reviews div
-        getBusinessReviews();
-    } catch (error) {
-        console.log(error.message);
-    }
 })
 // post business review
 but_ShowPostReview.addEventListener('click', () =>
@@ -212,6 +193,34 @@ document.querySelector('#login').addEventListener('submit', async (event) =>
 
 
 //=============== FUNCTIONS ===============//
+//business details / reviews page
+
+async function showReviews(){
+        // grab business id
+        const businessId = localStorage.getItem('businessId');
+        try {
+            // get business
+            const res = await axios.get(`${API_URL}/businesses/${businessId}`);
+            const business = res.data.business;
+    
+            // populate reviews page with business info
+            document.querySelector('#reviews-business-name').innerHTML = business.name;
+            document.querySelector('#reviews-business-address').innerHTML = business.address;
+            document.querySelector('#reviews-business-description').innerHTML = business.description;
+            document.querySelector('#reviews-business-type').innerHTML = business.type;
+            document.querySelector('#reviews-business-owner').innerHTML = `Listed by: ${business.owner}`;
+            
+            // show reviews page
+            displaySec(sec_Review);
+            // populate reviews div
+            getBusinessReviews();
+        } catch (error) {
+            console.log(error.message);
+        }
+}
+
+
+
 
 // displays appropriate nav links when user is logged in or out
 function checkForUser ()
@@ -311,6 +320,8 @@ async function showProfile ()
     // fill edit fields
     document.querySelector('#update-name').value = user.name;
     document.querySelector('#update-email').value = user.email;
+
+    document.querySelector('#my-bsn-list-header').innerHTML = user.name + '\'s Businesses';
 }
 
 // update user profile
@@ -435,22 +446,60 @@ async function initializeAllBsnList(){
 }
 
 /* --------------------------- My Businesses List --------------------------- */
-const myBsnListHeader = document.querySelector('#my-bsn-list-header');
 const myBsnList = document.querySelector('#my-business-list');
 
 async function initializeMyBsnList(){
     try{
-       // let response = await axios.get(`${API_URL}/businesses/myBusinesses/${localStorage.getItem('userId')}`)
+       let response = await axios.get(`${API_URL}/users/businesses`,{
+           headers: {
+                Authorization: localStorage.getItem('userId')
+            }
+        });
 
-        console.log(localStorage.getItem('userId'))
-        console.log(response)
+        var businesses = response.data.businesses;
+
+        //clear my business list
+        myBsnList.innerHTML = '';
+
+        //make div for each business and append to list box
+        for(let i=0; i<businesses.length;i++){
+            //make the div
+            const bsn_div = document.createElement('div')
+            //add the class
+            bsn_div.classList.add('listed-business')
+
+            // //add the id associated with the bsn's id in database
+            // bsn_div.setAttribute('id',businesses[i].id)
+            
+            // add business id to local storage - for posting/getting reviews
+            localStorage.setItem('businessId', businesses[i].id);
+
+            //add bsn name to inner html
+            bsn_div.innerHTML= businesses[i].name
+
+            clickMyBsn(bsn_div, businesses[i]);
+
+
+            //append div to list box
+            myBsnList.appendChild(bsn_div);
+            
+
+        }
+
 
     }catch(error){
         console.log(error)
     }
 }
 
-// post a business review
+//make business clickable and display the business details
+function clickMyBsn(div,bsn){
+    div.addEventListener('click', async () => {
+        await showReviews();
+    })
+}
+
+/* ------------------------- post a business review ------------------------- */
 async function postReview ()
 {
     // review information
