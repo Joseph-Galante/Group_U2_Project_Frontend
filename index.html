@@ -19,6 +19,7 @@
         <span id="profile-link" class="nav-link">Profile</span>
         <span id="logout-link" class="nav-link">Logout</span>
         <span id="all-business-link" class="nav-link">All Businesses</span>
+        <span id="create-business-link" class="nav-link">List Your Business</span>
     </nav>
 
 <!--MESSAGES------------------------------------------------------------------------------------------ -->
@@ -112,21 +113,21 @@
     </section>
 
 <!--Create Businesses SCREEN------------------------------------------------------------------------------------------ -->
-    <section class="businesses-state">
+    <section class="create-business-screen">
         <div class="form-container">
             <form class="creation-form">
                 <h1>Create New Business</h1>
                 <div class="form-control">
                     <label for="name">Business Name</label>
-                    <input type="text" id="business-name" placeholder="business name">
+                    <input type="text" id="business-name" name="name" placeholder="business name">
                 </div>
                 <div class="form-control">
                     <label for="address"> Business Address</label>
-                    <input type="text" id="business-address" placeholder="business address">
+                    <input type="text" id="business-address" name="address" placeholder="business address">
                 </div>
                 <div class="form-control">
                     <label for="description">Description</label>
-                    <input type="text" id="description" placeholder="description">
+                    <input type="text" id="description" name="description" placeholder="description">
                 </div>
                 <div class="form-control">
                     <label for="type">Type</label>
@@ -140,7 +141,7 @@
                     </select>
                 </div>
                 <div class="form-control">
-                    <input type="button" id="submit-btn" value="submit">
+                    <input type="button" id="create-bsn" value="submit">
                 </div>
             </form>
         </div>

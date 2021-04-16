@@ -13,6 +13,7 @@ const nav_LoginLink = document.querySelector('#login-link');
 const nav_ProfileLink = document.querySelector('#profile-link');
 const nav_LogoutLink = document.querySelector('#logout-link');
 const nav_AllBusinessesLink = document.querySelector('#all-business-link');
+const nav_CreateBusinessLink = document.querySelector('#create-business-link');
 
 // sections
 const sec_Home = document.querySelector('.welcome_screen');
@@ -21,6 +22,7 @@ const sec_Profile = document.querySelector('.profile');
 const sec_Review = document.querySelector('.reviews-state');
 const sec_PostReview = document.querySelector('.post-review');
 const sec_AllBusiness = document.querySelector('.all-businesses-screen');
+const sec_CreateBusiness = document.querySelector('.create-business-screen');
 
 // divs
 const div_ProfileInfo = document.querySelector('.profile-info');
@@ -42,6 +44,7 @@ const but_EditBusiness = document.querySelector('#edit-business');
 const but_DeleteBusiness = document.querySelector('#delete-business');
 const but_CancelBusinessUpdate = document.querySelector('#cancel-business-update');
 const but_SaveBusinessUpdate = document.querySelector('#save-business-update');
+const but_CreateBusiness = document.querySelector('#create-bsn');
 
 // misc
 const messages = document.querySelector('#messages');
@@ -83,8 +86,27 @@ nav_LogoutLink.addEventListener('click', () => {
     checkForUser();
 })
 
+//go to all businesses
 nav_AllBusinessesLink.addEventListener('click', () => {
     // to all businesses
+    showAllBusinesses();
+    initializeAllBsnList();
+
+})
+
+//go to create business
+nav_CreateBusinessLink.addEventListener('click',() => {
+    //to create business sec
+    displaySec(sec_CreateBusiness);
+
+})
+
+//submit button for create business
+but_CreateBusiness.addEventListener('click', async ()=>{
+    //submit the form / create the business
+    await createBusiness();
+
+    //go to the all businesses page
     showAllBusinesses();
     initializeAllBsnList();
 
@@ -255,6 +277,34 @@ document.querySelector('#login').addEventListener('submit', async (event) =>
         console.log(error.message);
     }
 })
+
+//create business form submit
+async function createBusiness(){
+    try{
+       //inputs:
+       var name = document.querySelector('#business-name').value;
+       var address = document.querySelector('#business-address').value;
+       var description = document.querySelector('#description').value;
+       var type = document.querySelector('#type').value;
+
+       //put new business in database
+       const res = await axios.post(`${API_URL}/users/businesses`, {
+           name: name,
+           address: address,
+           description: description,
+           type: type
+       },
+       {
+           headers: {
+               Authorization: localStorage.getItem('userId')
+           }
+       })
+
+
+    }catch(error){
+        console.log(error)
+    }
+}
 
 
 //=============== FUNCTIONS ===============//
