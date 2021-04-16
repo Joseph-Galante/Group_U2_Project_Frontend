@@ -367,6 +367,8 @@ async function initializeAllBsnList(){
         //clear all business list
         allBsnList.innerHTML = '';
 
+        console.log(response)
+
         //make div for each business and append to list box
         for(i=0; i<businesses.length;i++){
             //make the div
