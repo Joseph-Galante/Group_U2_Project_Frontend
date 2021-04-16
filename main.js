@@ -36,7 +36,6 @@ const but_SaveChanges = document.querySelector('#save-changes');
 const but_ShowPostReview = document.querySelector('#post-review-button');
 const but_PostReview = document.querySelector('#post-review');
 const but_CancelReview = document.querySelector('#cancel-review');
-const but_ShowReviews = document.querySelector('#show-reviews');
 
 // misc
 const messages = document.querySelector('#messages');
@@ -92,12 +91,6 @@ but_SaveChanges.addEventListener('click', saveChanges);
 // cancel profile changes
 but_CancelChanges.addEventListener('click', cancelChanges);
 
-// business review page
-but_ShowReviews.addEventListener('click', async () =>
-{
-    await showReviews();
-
-})
 // post business review
 but_ShowPostReview.addEventListener('click', () =>
 {
@@ -193,9 +186,9 @@ document.querySelector('#login').addEventListener('submit', async (event) =>
 
 
 //=============== FUNCTIONS ===============//
-//business details / reviews page
 
-async function showReviews(){
+//business details / reviews page
+async function getBusinessDetails(){
         // grab business id
         const businessId = localStorage.getItem('businessId');
         try {
@@ -218,8 +211,6 @@ async function showReviews(){
             console.log(error.message);
         }
 }
-
-
 
 
 // displays appropriate nav links when user is logged in or out
@@ -293,8 +284,6 @@ async function showAllBusinesses ()
 {
     //show allbusinesses sec
     displaySec(sec_AllBusiness);
-    // hide reviews button
-    but_ShowReviews.classList.add('hidden');
 }
 
 // show profile info
@@ -381,22 +370,12 @@ function cancelChanges ()
 /* -------------------------- all businesses state -------------------------- */
 //document queries
 const allBsnList = document.querySelector('#business-list')
-const bsnName = document.querySelector('#bsn-name')
-const bsnAddress = document.querySelector('#bsn-address')
-const bsnDescription = document.querySelector('#bsn-description')
-const bsnType = document.querySelector('#bsn-type')
-const bsnLister = document.querySelector('#bsn-lister')
 
 //make business clickable and display the business details
 function clickBsn(div,bsn){
     div.addEventListener('click', () => {
-        bsnName.innerHTML = bsn.name;
-        bsnAddress.innerHTML = bsn.address;
-        bsnDescription.innerHTML = bsn.description;
-        bsnType.innerHTML = bsn.type;
-        bsnLister.innerHTML = bsn.owner;
-        // show reviews button
-        but_ShowReviews.classList.remove('hidden');
+        // business details page
+        getBusinessDetails();
     })
 }
 
@@ -411,8 +390,6 @@ async function initializeAllBsnList(){
 
         //clear all business list
         allBsnList.innerHTML = '';
-
-        console.log(response)
 
         //make div for each business and append to list box
         for(let i=0; i<businesses.length;i++){
@@ -495,7 +472,7 @@ async function initializeMyBsnList(){
 //make business clickable and display the business details
 function clickMyBsn(div,bsn){
     div.addEventListener('click', async () => {
-        await showReviews();
+        getBusinessDetails();
     })
 }
 
