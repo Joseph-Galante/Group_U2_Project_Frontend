@@ -88,7 +88,8 @@ body {
 .profile {
     height: 100%;
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 
 }
@@ -237,42 +238,81 @@ body {
 .form-control label {
     display: block;
     margin-bottom: 5px;
-  }
+}
 
-  .form-control input {
-      width: 100%;
-      border-radius: 5px;
-      padding: 5px;
-  }
+.form-control input {
+    width: 100%;
+    border-radius: 5px;
+    padding: 5px;
+}
 
-  #submit-btn {
-      cursor: pointer;
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 16px;
-  }
+#submit-btn {
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+}
 
-  .reviews-state {
-      border: 1px solid black;
-  }
+.reviews-state {
+    border: 1px solid black;
+}
 
-  #hidden {
-      display: none;
-  }
+#hidden {
+    display: none;
+}
 
-  .reviews-state {
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
-      align-items: center;
-  }
+.reviews-state {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
 
-  .business-detail-container {
-      border: 1px solid black;
-      height: 400px;
-      width: fit-content;
-  }
+.business-detail-container {
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
+    background-color: #59788e;
+    position: relative;
+}
+
+.reviews {
+    border: 1px solid black;
+    height: 400px;
+    width: 400px;
+    background-color: #59788e;
+    text-align: center;
+}
+
+.reviews div {
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+}
+
+.post-review {
+    border: 1px solid black;
+    height: 100%;
+}
+
+#post-review-headline {
+    width: 300px;
+}
+
+#post-review-content {
+    width: 800px;
+}
+
+.review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 100px;
+    background-color: #59788e;
+}
 
 .welcome_message {
     text-align: center;
@@ -298,9 +338,9 @@ body {
     text-align: center;
 }
 
-.reviews {
-    border: 1px solid black;
-    height: 400px;
+#post-review-button {
+    position: absolute;
+    left: 80px;
 }
 
 .user-reviews {
@@ -430,4 +470,16 @@ h1 {
     justify-content: space-evenly;
     align-items: center;
     height: 80%;
+}
+
+/* ------------------------------ my businesses ----------------------------- */
+#list-my-businesses{
+    height: 500px;
+    width: 400px; 
+    background-color: #59788e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid black;
+    font-size: 20px;
 }
