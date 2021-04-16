@@ -65,6 +65,7 @@ nav_LoginLink.addEventListener('click', () => {
 // profile
 nav_ProfileLink.addEventListener('click', async () => {
     showProfile();
+    initializeMyBsnList();
 })
 
 // logout
@@ -410,6 +411,21 @@ async function initializeAllBsnList(){
 
 }
 
+/* --------------------------- My Businesses List --------------------------- */
+const myBsnListHeader = document.querySelector('#my-bsn-list-header');
+const myBsnList = document.querySelector('#my-business-list');
+
+async function initializeMyBsnList(){
+    try{
+       // let response = await axios.get(`${API_URL}/businesses/myBusinesses/${localStorage.getItem('userId')}`)
+
+        console.log(localStorage.getItem('userId'))
+        console.log(response)
+
+    }catch(error){
+        console.log(error)
+    }
+}
 
 // post a business review
 async function postReview ()
