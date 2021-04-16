@@ -33,10 +33,9 @@ body {
     margin-top: 0;
 }
 
-#log_sign_screen{
+.log_sign_screen{
     height: 60vw;
     width: 100vw;
-    
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -87,8 +86,11 @@ body {
 }
 
 .profile {
-    border: 1px solid black;
     height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
 }
 
 .profile-info {
@@ -192,6 +194,7 @@ body {
 #messages {
     font-family: monospace;
     font-size: 18px;
+    text-align: center;
 }
 .fail {
     color: red;
@@ -379,20 +382,22 @@ input[type=button]:hover {
     height: 50%;
     width: 33%; 
     background-color: #59788e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid black;
+    font-size: 22px;
 }
 
 #business-details{
     height: 50%;
     width: 33%;
-    border: 1px solid black;
+    border: 5px solid black;
     background-color: #59788e;
+    font-size: 22px;
     
 }
 
-#business-list{
-    border: 5px solid black;
-    height: 100%;
-}
 
 h1 {
     text-align: center;
@@ -400,6 +405,7 @@ h1 {
     font-size: 30px;
     text-transform: uppercase;
     color: #000000;
+    position: relative;
 }
 
 #details-box {
