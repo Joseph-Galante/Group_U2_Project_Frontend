@@ -418,3 +418,16 @@ h1 {
     align-items: center;
     height: 80%;
 }
+
+
+/* ------------------------------ my businesses ----------------------------- */
+#list-my-businesses{
+    height: 500px;
+    width: 400px; 
+    background-color: #59788e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid black;
+    font-size: 22px;
+}
