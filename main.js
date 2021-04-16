@@ -477,8 +477,6 @@ async function getBusinessReviews ()
     div_Reviews.innerHTML = '';
     // get business id
     const businessId = localStorage.getItem('businessId');
-    // reverse reviews array - used to display reviews from newest to oldest
-    let revReviews = [];
     try {
         // get reviews
         const res = await axios.get(`${API_URL}/businesses/${businessId}/reviews`);
@@ -488,16 +486,8 @@ async function getBusinessReviews ()
         {
             return;
         }
-        else
-        {
-            // reverse reviews
-            while (reviews.length > 0)
-            {
-                revReviews.push(reviews.pop());
-            }
-        }
         // display reviews
-        revReviews.forEach(review =>
+        reviews.reverse().forEach(review =>
         {
             // create div elements for each review
             const reviewDiv = document.createElement('div');
