@@ -3,6 +3,8 @@
 # Welp
 Group_U2_Project_Frontend
 
+https://group-welp.herokuapp.com/
+
 ## Overview
 
 ## Wireframes
@@ -46,8 +48,9 @@ Business Reviews
 1. Clicking on the name of a business in the All Businesses section takes me to the Single Business view for that business. Here I can see the name, address, type, and description of this business. I can also see the name of the user who listed it.
 1. Beneath this (still in Single Business view), I can see a list of all reviews that have been left on this business, along with the name of the user who left the review. Each review has headline, a content, and an integer rating out of 5. Reviews are ordered with the most recent review at the top, and the oldest review at the bottom.
 1. Still in Single Business view, IF I am logged in, there is a form to leave a review (also consisting of headline, content, and rating out of 5). (If I am not logged in, this form is not present.) This form is sandwiched between the business info and the list of reviews, so that I don't have to scroll all the way to the bottom of a potentially long list of reviews to get to it. When the form is submitted, the new review appears at the top of the list.
-## MVP Goals
-
-## Routes
 
 ## Stretch Goals
+- CSS
+- User auth with encryption
+- Edit and Delete business functionality
+- Upload image of business
